@@ -20,6 +20,10 @@ else
    # Use tee to append to sudoers file
    echo "$CURRENT_USER ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "$SUDOER_FILE" > /dev/null
    check_command "set up passwordless sudo"
+   
+   # Set correct permissions on the new sudoers file
+   sudo chmod 0440 "$SUDOER_FILE"
+   check_command "set correct permissions on sudoers file"
     
    # Verify the change
    sudo visudo -c
