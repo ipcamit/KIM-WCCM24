@@ -7,6 +7,8 @@ check_command() {
     fi
 }
 
+current_dir=$(pwd)
+
 # Install LLVM 17
 cd /opt
 sudo wget https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.5/clang+llvm-17.0.5-x86_64-linux-gnu-ubuntu-22.04.tar.xz
@@ -41,8 +43,6 @@ export TORCH_ROOT="/opt/libtorch"
 
 echo "LLVM and libtorch installation completed."
 
-current_dir=$(pwd)
-
 # Check for CUDA
 # if ! command -v nvcc &> /dev/null
 # then
@@ -58,6 +58,9 @@ current_dir=$(pwd)
 #         echo "Info: Located CUDNN at ${CUDNN_ROOT}"
 #     fi
 # fi
+
+cd ${current_dir}
+echo pwd
 
 # Install TorchScatter
 if [[ -z "${TorchScatter_ROOT}" ]]; then

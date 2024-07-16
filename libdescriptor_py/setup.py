@@ -24,6 +24,15 @@ ext_modules = [
             pybind11.get_include(user=True),
             "/usr/local/include",
         ],
+        library_dirs=[
+            "/usr/local/lib",
+        ],
+        libraries=[
+            "descriptor",
+        ],
+        extra_link_args=[
+            "-Wl,-rpath,/usr/local/lib",
+        ],
         language='c++'
     ),
 ]
