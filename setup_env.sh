@@ -12,7 +12,7 @@ SCRIPTS=(
 "env_scripts/09_install_ml_dependencies.sh"
 )
 
-cwd = $(pwd)
+export cwd=$(pwd)
 
 for script in "${SCRIPTS[@]}"; do
     echo "Running $script..."
