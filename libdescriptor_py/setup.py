@@ -7,18 +7,9 @@ from setuptools import find_packages
 # Define the C++ extension
 ext_modules = [
     Extension(
-        'libdescriptor.neighbor',
-        ['libdescriptor/neighbor/neighbor_list.cpp'],
-        include_dirs=[
-            pybind11.get_include(),
-            pybind11.get_include(user=True),
-            "/usr/local/include",
-        ],
-        language='c++'
-    ),
-    Extension(
         'libdescriptor.libdescriptor',
-        ['libdescriptor/python_bindings.cpp'],
+        ['libdescriptor/python_bindings.cpp',
+         'libdescriptor/neighbor/neighbor_list.cpp'],
         include_dirs=[
             pybind11.get_include(),
             pybind11.get_include(user=True),
