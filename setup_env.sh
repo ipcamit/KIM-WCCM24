@@ -3,8 +3,8 @@
 SCRIPTS=(
 "env_scripts/01_basic_env.sh"
 "env_scripts/02_basic_tools.sh"
-"env_scripts/03_install_kim_lammps.sh"
-"env_scripts/04_install_lammps.sh"
+"env_scripts/03_install_kim_and_others.sh"
+"env_scripts/04_install_lammps_and_others.sh"
 "env_scripts/05_install_aflow.sh"
 "env_scripts/06_setup_pipeline.sh"
 "env_scripts/07_install_llvm_libtorch.sh"
