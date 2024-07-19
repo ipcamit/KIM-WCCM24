@@ -38,7 +38,7 @@ check_command "install torch-sparse"
 pip install loguru
 check_command "install loguru"
 
-pip install git+https://github.com/openkim/kliff.git@v1
+pip install git+https://github.com/ipcamit/kliff.git@wccm
 check_command "install kliff"
 
 kim-api-collections-management install user TorchML__MD_173118614730_000
