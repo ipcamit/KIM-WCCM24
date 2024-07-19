@@ -91,7 +91,7 @@ if [[ -z "${TorchSparse_ROOT}" ]]; then
     else
         cmake -DCMAKE_PREFIX_PATH="${TORCH_ROOT}" -DCMAKE_INSTALL_PREFIX="" -DCMAKE_BUILD_TYPE=Release ../pytorch_sparse || exit
     fi
-    sudo make -j$(nproc) install
+    sudo make install
     check_command "install TorchSparse"
     cd ${current_dir} || exit
 else
