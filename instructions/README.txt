@@ -112,10 +112,10 @@ Section II. Docker basics
     of a container, and must be done at the time a container is first created
     from an image using `docker run`.  For example, to mount the directory at
     /home/user/Documents/my_kim_stuff on the host to a directory called
-    /home/$USER/kim-dev inside of a container, one could instantiate it via
+    /home/user/kim-dev inside of a container, one could instantiate it via
 
       docker run -it --name kim_dev --mount \
-        type=bind,source=/home/user/Documents/my_kim_stuff,target=/home/$USER/kim-dev \
+        type=bind,source=/home/user/Documents/my_kim_stuff,target=/home/user/kim-dev \
         ghcr.io/openkim/developer-platform bash
 
     Unlike bind mounts, docker volumes are managed internally by docker, and
