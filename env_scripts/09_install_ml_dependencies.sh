@@ -41,6 +41,12 @@ check_command "install loguru"
 pip install git+https://github.com/ipcamit/kliff.git@wccm
 check_command "install kliff"
 
+pip install tensorboard tensorboardX
+check_command "install tensorboard"
+
+pip install scikit-learn
+check_command "install scikit-learn"
+
 kim-api-collections-management install user TorchML__MD_173118614730_000
 check_command "install TorchML KIM model"
 
