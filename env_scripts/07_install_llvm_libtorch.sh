@@ -28,8 +28,8 @@ echo 'export INCLUDE="/opt/clang+llvm-17.0.5-x86_64-linux-gnu-ubuntu-22.04/inclu
 # check_command "extract libtorch"
 
 # Install libtorch (CUDA version)
-        unzip libtorch-cxx11-abi-shared-with-deps-1.13.0+cu117.zip || exit
 sudo wget https://download.pytorch.org/libtorch/cu117/libtorch-cxx11-abi-shared-with-deps-1.13.0%2Bcu117.zip
+unzip libtorch-cxx11-abi-shared-with-deps-1.13.0+cu117.zip || exit
 check_command "download libtorch"
 unzip libtorch-cxx11-abi-shared-with-deps-1.13.0+cu117.zip  -d /opt
 check_command "extract libtorch"
