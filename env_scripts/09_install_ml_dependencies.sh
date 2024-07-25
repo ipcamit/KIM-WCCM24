@@ -8,8 +8,8 @@ check_command() {
 }
 
 # Install ML dependencies
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-check_command "install PyTorch"
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+# check_command "install PyTorch"
 
 pip install pytorch_lightning
 check_command "install PyTorch Lightning"

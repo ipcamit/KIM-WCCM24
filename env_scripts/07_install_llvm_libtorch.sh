@@ -22,9 +22,16 @@ echo 'export LD_LIBRARY_PATH="/opt/clang+llvm-17.0.5-x86_64-linux-gnu-ubuntu-22.
 echo 'export INCLUDE="/opt/clang+llvm-17.0.5-x86_64-linux-gnu-ubuntu-22.04/include:$INCLUDE"' >> ~/.bashrc
 
 # Install libtorch (CPU version)
-sudo wget https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-1.13.0%2Bcpu.zip
+# sudo wget https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-1.13.0%2Bcpu.zip
+# check_command "download libtorch"
+# sudo unzip libtorch-cxx11-abi-shared-with-deps-1.13.0+cpu.zip -d /opt
+# check_command "extract libtorch"
+
+# Install libtorch (CUDA version)
+        unzip libtorch-cxx11-abi-shared-with-deps-1.13.0+cu117.zip || exit
+sudo wget https://download.pytorch.org/libtorch/cu117/libtorch-cxx11-abi-shared-with-deps-1.13.0%2Bcu117.zip
 check_command "download libtorch"
-sudo unzip libtorch-cxx11-abi-shared-with-deps-1.13.0+cpu.zip -d /opt
+unzip libtorch-cxx11-abi-shared-with-deps-1.13.0+cu117.zip  -d /opt
 check_command "extract libtorch"
 
 # Set environment variables for libtorch
@@ -63,39 +70,39 @@ cd ${current_dir}
 echo pwd
 
 # Install TorchScatter
-if [[ -z "${TorchScatter_ROOT}" ]]; then
-    echo "Installing TorchScatter"
+# if [[ -z "${TorchScatter_ROOT}" ]]; then
+    # echo "Installing TorchScatter"
     git clone --recurse-submodules https://github.com/rusty1s/pytorch_scatter || exit
     mkdir -p build_scatter
     cd build_scatter || exit
-    if [[ $is_cuda_available -eq 1 ]]; then
+    # if [[ $is_cuda_available -eq 1 ]]; then
         cmake -DCMAKE_PREFIX_PATH="${TORCH_ROOT}" -DCMAKE_INSTALL_PREFIX="" -DCUDNN_INCLUDE_PATH="${CUDNN_ROOT}/include" -DCUDNN_LIBRARY_PATH="${CUDNN_ROOT}/lib" -DCMAKE_BUILD_TYPE=Release ../pytorch_scatter || exit
-    else
-        cmake -DCMAKE_PREFIX_PATH="${TORCH_ROOT}" -DCMAKE_INSTALL_PREFIX="" -DCMAKE_BUILD_TYPE=Release ../pytorch_scatter || exit
-    fi
+    # else
+        # cmake -DCMAKE_PREFIX_PATH="${TORCH_ROOT}" -DCMAKE_INSTALL_PREFIX="" -DCMAKE_BUILD_TYPE=Release ../pytorch_scatter || exit
+    # fi
     sudo make -j$(nproc) install
     check_command "install TorchScatter"
     cd ${current_dir} || exit
-else
-    echo "Info: Located TorchScatter at ${TorchScatter_ROOT}"
-fi
+# else
+    # echo "Info: Located TorchScatter at ${TorchScatter_ROOT}"
+# fi
 
 # Install TorchSparse
-if [[ -z "${TorchSparse_ROOT}" ]]; then
-    echo "Installing TorchSparse"
+# if [[ -z "${TorchSparse_ROOT}" ]]; then
+    # echo "Installing TorchSparse"
     git clone --recurse-submodules https://github.com/rusty1s/pytorch_sparse || exit
     mkdir -p build_sparse
     cd build_sparse || exit
-    if [[ $is_cuda_available -eq 1 ]]; then
+    # if [[ $is_cuda_available -eq 1 ]]; then
         cmake -DCMAKE_PREFIX_PATH="${TORCH_ROOT}" -DCMAKE_INSTALL_PREFIX="" -DCUDNN_INCLUDE_PATH="${CUDNN_ROOT}/include" -DCUDNN_LIBRARY_PATH="${CUDNN_ROOT}/lib" -DCMAKE_BUILD_TYPE=Release ../pytorch_sparse || exit
-    else
-        cmake -DCMAKE_PREFIX_PATH="${TORCH_ROOT}" -DCMAKE_INSTALL_PREFIX="" -DCMAKE_BUILD_TYPE=Release ../pytorch_sparse || exit
-    fi
+    # else
+        # cmake -DCMAKE_PREFIX_PATH="${TORCH_ROOT}" -DCMAKE_INSTALL_PREFIX="" -DCMAKE_BUILD_TYPE=Release ../pytorch_sparse || exit
+    # fi
     sudo make install
     check_command "install TorchSparse"
     cd ${current_dir} || exit
-else
-    echo "Info: Located TorchSparse at ${TorchSparse_ROOT}"
-fi
+# else
+#     echo "Info: Located TorchSparse at ${TorchSparse_ROOT}"
+# fi
 
 echo "TorchScatter and TorchSparse installation completed."
